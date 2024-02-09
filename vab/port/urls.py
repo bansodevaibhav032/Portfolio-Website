@@ -4,7 +4,7 @@ from .import views
 urlpatterns =[
 
     path('', views.home, name="home"),
-    path('', views.home, name="posts"),
-    path('', views.home, name="post"),
-    path('', views.home, name="profile")
+    path('posts/', views.posts, name="posts"),
+    path('post/', views.post, name="post"),
+    path('profile/', views.profile, name="profile")
 ]
