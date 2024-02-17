@@ -6,13 +6,4 @@ from django.http import HttpResponse
 
 
 def home(request):
-    return render(request,'home.html')
-
-def posts(request):
-    return render(request,'posts.html')
-
-def post(request):
-    return render(request, 'post.html')
-
-def profile(request):
-    return render(request, 'profile.html')
+    return render(request,'index.html')
