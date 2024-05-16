@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
+from environ import Env
+env=Env()
+Env.read_env()
+ENVIRONMENT= env('ENVIRONMENT',default='production')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +27,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=r4k5ztjpg$=o99dfg9k2t#-f5--1pj#^j1o-ayni25t$3tdze'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if ENVIRONMENT == 'development':
+    DEBUG = True
+else:
+    DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'vaibhav-portfolio-website.up.railway.app']
+
+CSRF_TRUSTED_ORIGINS = ['https://vaibhav-portfolio-website.up.railway.app']
 
 
 # Application definition
@@ -39,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'port.apps.PortConfig',
+    'vab',
+    'admin_honeypot',
 ]
 
 MIDDLEWARE = [
@@ -82,6 +95,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+POSTGRES_LOCALLY= False
+if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
+    DATABASES['default'] = dj_database_url.parse(env('DATABASE_URL'))
 
 
 # Password validation
@@ -132,3 +149,5 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ACCOUNT_USERNAME_BLACKLIST=['admin','theboss']
