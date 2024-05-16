@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'port.apps.PortConfig',
-    'admin_honeypot',
+    'admin_honeypot'
 ]
 
 MIDDLEWARE = [
