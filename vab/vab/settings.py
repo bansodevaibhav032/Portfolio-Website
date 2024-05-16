@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'port.apps.PortConfig',
-    'port',
     'admin_honeypot',
 ]
 
