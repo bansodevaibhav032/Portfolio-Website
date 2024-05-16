@@ -39,7 +39,10 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'vaibhav-portfolio-website.up.railway
 
 CSRF_TRUSTED_ORIGINS = ['https://vaibhav-portfolio-website.up.railway.app']
 
-
+INTETNAL_IPS= (
+    '127.0.0.1',
+    'localhost:8000'
+)
 # Application definition
 
 INSTALLED_APPS = [
